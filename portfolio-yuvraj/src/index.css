@@ -1,0 +1,274 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Portfolio Design System - Modern & Animated */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+@layer base {
+  :root {
+    /* Homepage Colors (Off-white) */
+    --background: 36 11% 97%;  /* Off-white cream */
+    --foreground: 240 9% 9%;   /* Deep charcoal */
+    
+    /* Inner Page Colors (Black theme) */
+    --dark-background: 240 9% 5%;  /* Deep black */
+    --dark-foreground: 0 0% 98%;   /* Pure white */
+    --dark-accent: 240 8% 85%;     /* Light gray */
+    --dark-border: 240 9% 20%;     /* Dark gray border */
+    --dark-hover: 240 9% 15%;      /* Hover dark */
+    
+    --card: 0 0% 100%;
+    --card-foreground: 240 9% 9%;
+    
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 9% 9%;
+    
+    /* Primary brand (charcoal black) */
+    --primary: 240 9% 9%;
+    --primary-foreground: 36 11% 97%;
+    
+    /* Subtle gray accents */
+    --secondary: 240 5% 96%;
+    --secondary-foreground: 240 9% 9%;
+    
+    --muted: 240 5% 94%;
+    --muted-foreground: 240 4% 46%;
+    
+    --accent: 240 5% 92%;
+    --accent-foreground: 240 9% 9%;
+    
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    
+    --border: 240 6% 90%;
+    --input: 240 6% 90%;
+    --ring: 240 9% 9%;
+    
+    --radius: 0.75rem;
+
+    /* Portfolio Specific Tokens */
+    --hero-text: 240 9% 9%;
+    --portfolio-accent: 240 4% 65%;
+    --portfolio-border: 240 6% 88%;
+    --portfolio-hover: 240 5% 94%;
+    
+    /* Glow Effects */
+    --glow-primary: 240 100% 70%;
+    --glow-accent: 195 100% 70%;
+    
+    /* Transitions & Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-fast: all 0.15s ease-out;
+    --transition-spring: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+  
+  /* Dark Theme for Inner Pages */
+  .dark-theme {
+    background: hsl(var(--dark-background));
+    color: hsl(var(--dark-foreground));
+  }
+  
+  /* Smooth Page Transitions */
+  .page-transition {
+    animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  /* Portfolio Typography */
+  .hero-name {
+    font-size: clamp(2.5rem, 8vw, 6rem);
+    font-weight: 900;
+    line-height: 0.9;
+    letter-spacing: -0.02em;
+    color: hsl(var(--hero-text));
+    animation: fadeInUp 0.8s ease-out 0.2s both;
+  }
+  
+  .hero-title {
+    font-size: clamp(0.875rem, 2vw, 1.125rem);
+    font-weight: 500;
+    color: hsl(var(--portfolio-accent));
+    letter-spacing: 0.025em;
+    animation: fadeInUp 0.6s ease-out 0.1s both;
+  }
+  
+  .nav-link {
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: hsl(var(--foreground));
+    transition: var(--transition-fast);
+    text-decoration: none;
+    position: relative;
+  }
+  
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background-color: hsl(var(--portfolio-accent));
+    transition: width 0.3s ease-out;
+  }
+  
+  .nav-link:hover::after {
+    width: 100%;
+  }
+  
+  .nav-link:hover {
+    color: hsl(var(--portfolio-accent));
+  }
+  
+  /* Dark theme navigation */
+  .dark-theme .nav-link {
+    color: hsl(var(--dark-foreground));
+  }
+  
+  .dark-theme .nav-link:hover {
+    color: hsl(var(--dark-accent));
+  }
+  
+  .dark-theme .nav-link::after {
+    background-color: hsl(var(--dark-accent));
+  }
+  
+  .availability-label {
+    font-size: 0.6875rem;
+    font-weight: 500;
+    color: hsl(var(--portfolio-accent));
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  
+  .availability-year {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: hsl(var(--foreground));
+    line-height: 1;
+  }
+  
+  /* Glowing Button Effect */
+  .glow-button {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .glow-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.6s;
+  }
+  
+  .glow-button:hover::before {
+    left: 100%;
+  }
+  
+  /* Card Hover Effects */
+  .card-hover {
+    transition: var(--transition-spring);
+  }
+  
+  .card-hover:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  }
+  
+  /* Dark theme card hover */
+  .dark-theme .card-hover:hover {
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+  }
+  
+  /* Glassmorphism Effect */
+  .glass {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+}
+
+@layer utilities {
+  /* Animation Keyframes */
+  @keyframes fadeInUp {
+    0% {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes fadeInLeft {
+    0% {
+      opacity: 0;
+      transform: translateX(-30px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  @keyframes scaleIn {
+    0% {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  
+  @keyframes glow {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.8;
+    }
+  }
+  
+  /* Animation Classes */
+  .animate-fade-in-up {
+    animation: fadeInUp 0.6s ease-out;
+  }
+  
+  .animate-fade-in-left {
+    animation: fadeInLeft 0.6s ease-out;
+  }
+  
+  .animate-scale-in {
+    animation: scaleIn 0.4s ease-out;
+  }
+  
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite;
+  }
+  
+  /* Stagger Animation Delays */
+  .delay-1 { animation-delay: 0.1s; }
+  .delay-2 { animation-delay: 0.2s; }
+  .delay-3 { animation-delay: 0.3s; }
+  .delay-4 { animation-delay: 0.4s; }
+  .delay-5 { animation-delay: 0.5s; }
+  .delay-6 { animation-delay: 0.6s; }
+}
